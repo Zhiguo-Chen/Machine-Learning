@@ -3,3 +3,4 @@ logs/
 tmp/
 datasets/
 assets/
+__pycache__/
