@@ -31,4 +31,4 @@ class MaskRCNN():
             "*epoch*", "{epoch:04d}")
 
     def build(self, mode, config):
-        pass
+        assert mode in ['training', 'inference']
