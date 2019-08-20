@@ -24,6 +24,12 @@ def update_config(config_obj):
     config_obj.MEAN_PIXEL = np.array([123.7, 116.8, 103.9])
     config_obj.RPN_BBOX_STD_DEV = np.array([0.1, 0.1, 0.2, 0.2])
     config_obj.BBOX_STD_DEV = np.array([0.1, 0.1, 0.2, 0.2])
+    config_obj.NAME = 'coco'
+    config_obj.IMAGES_PER_GPU = 2
+    config_obj.NUM_CLASSES = 1 + 80
+    config_obj.GPU_COUNT = 1
+    config_obj.IMAGES_PER_GPU = 1
+    config_obj.IMAGE_SHAPE = np.array([config_obj.IMAGE_MAX_DIM, config_obj.IMAGE_MAX_DIM, config_obj.IMAGE_CHANNEL_COUNT])
     return config_obj
 
 

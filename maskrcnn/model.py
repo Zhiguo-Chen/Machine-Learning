@@ -11,6 +11,7 @@ class MaskRCNN():
         self.config = config
         self.model_dir = model_dir
         self.set_log_dir()
+        self.model = self.build(mode, config)
 
     def set_log_dir(self, model_path=None):
         self.epoch = 0
@@ -23,6 +24,7 @@ class MaskRCNN():
                     m.group(3)), int(m.group(4)), int(m.group(5)))
                 self.epoch = int(m.group(6)) - 1 + 1
                 print('Re-starting from epoch %d' % self.epoch)
+        print(self.config.NAME, '=========')
         self.log_dir = os.path.join(
             self.model_dir, "{}{:%Y%m%dT%H%M}".format(self.config.NAME.lower(), now))
         self.checkpoint_path = os.path.join(
@@ -32,3 +34,5 @@ class MaskRCNN():
 
     def build(self, mode, config):
         assert mode in ['training', 'inference']
+        h, w = config.IMAGE_SHAPE[:2]
+        return 1
