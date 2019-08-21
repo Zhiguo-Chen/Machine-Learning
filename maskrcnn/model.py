@@ -2,6 +2,7 @@ import tensorflow as tf
 import datetime
 import re
 import os
+from tensorflow.keras import layers as KL
 
 
 class MaskRCNN():
@@ -35,4 +36,7 @@ class MaskRCNN():
     def build(self, mode, config):
         assert mode in ['training', 'inference']
         h, w = config.IMAGE_SHAPE[:2]
+        if h / 2**6 != int(h / 2**6) or w / 2**6 != int(w / 2**6):
+            raise Exception('Image size must be dividable by 2 at least 6 times to avoid fractions when downscaling and upscaling. For example, use 256, 320, 384, 448, 512, ... etc')
+        input_image = KL.Input(shape=[None, None, config.IMAGE_SHAPE[2]], name='input_image')
         return 1
