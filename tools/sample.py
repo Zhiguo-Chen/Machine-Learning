@@ -30,6 +30,7 @@ def update_config(config_obj):
     config_obj.GPU_COUNT = 1
     config_obj.IMAGES_PER_GPU = 1
     config_obj.IMAGE_SHAPE = np.array([config_obj.IMAGE_MAX_DIM, config_obj.IMAGE_MAX_DIM, config_obj.IMAGE_CHANNEL_COUNT])
+    config_obj.IMAGE_META_SIZE = 1 + 3 + 3 + 4 + 1 + config_obj.NUM_CLASSES
     return config_obj
 
 
@@ -42,6 +43,7 @@ def run():
     print(type(config_obj))
     print(config_obj.BBOX_STD_DEV)
     model.MaskRCNN(mode="inference", model_dir=MODEL_DIR, config=config_obj)
+    model.MaskRCNN(mode="training", model_dir=MODEL_DIR, config=config_obj)
 
 
 if __name__ == "__main__":
