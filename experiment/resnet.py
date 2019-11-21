@@ -52,5 +52,5 @@ def convolutional_block(X, f, filters, stage, block, s=2):
     X_shortcut = kr.layers.Conv2D(filters=F3, kernel_size=(1, 1), strides=(
         s, s), padding='valid', kernel_initializer=kr.initializers.glorot_uniform(seed=0), name=conv_name_base + '1')(X_shortcut)
     X_shortcut = kr.layers.BatchNormalization(axis=3, name=bn_name_base + '1')(X_shortcut)
-    X = tf.layers.Add()([X, X_shortcut])
+    X = kr.layers.Add()([X, X_shortcut])
     return X
