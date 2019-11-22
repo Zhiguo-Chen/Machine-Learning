@@ -67,13 +67,14 @@ cifar_train_images = cifar_train_images.astype('float32')
 cifar_test_images = cifar_test_images.astype('float32')
 cifar_train_images /= 255
 cifar_test_images /= 255
+print(cifar_train_labels.shape)
 
 
-model.fit(cifar_train_images, cifar_train_labels, batch_size=32, epochs=100,
-          validation_data=(cifar_test_images, cifar_test_labels))
+# model.fit(cifar_train_images, cifar_train_labels, batch_size=32, epochs=100,
+#           validation_data=(cifar_test_images, cifar_test_labels))
 
 model_path = os.path.join(save_dir, model_name)
-model.save(model_path)
+# model.save(model_path)
 
 scores = model.evaluate(cifar_test_images, cifar_test_labels, verbose=1)
 print('Test loss:', scores[0])
