@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from logistic_model import logistic
 
 data_file = 'marks.csv'
 data_path = os.path.join(os.path.abspath('..'), 'data', 'logistic_data', data_file)
@@ -15,5 +16,7 @@ def read_data(path):
 
 if __name__ == "__main__":
     dataMat, labelMat = read_data(data_path)
-    print(dataMat)
-    print(labelMat)
+    # print(dataMat.shape)
+    # print(dataMat)
+    # print(labelMat)
+    model = logistic(dataMat, labelMat)
