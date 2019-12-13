@@ -11,11 +11,14 @@ class logistic:
         return 1/(1 + np.exp(-1 * Z))
 
     def init_v(self, dim):
-        w = np.random.random([dim])
+        w = np.zeros([dim])
         b = np.random.rand(1)
         return w, b
 
     def infer(self, X):
+        print(self.w.shape)
+        print(X.T.shape)
+        print(self.b.shape)
         Z = np.dot(self.w, X.T) + self.b
         A = self.sigmoid(Z)
         return A
@@ -23,9 +26,9 @@ class logistic:
     def propagate(self, w, b, X, Y):
         m = X.shape[0]
         A = self.infer(X)
-        cost = (1/m) * (np.dot(Y, np.exp(A)) + np.dot((1-Y), np.exp(1-A)))
+        cost = (-1/m) * (np.dot(Y, np.exp(A)) + np.dot((1-Y), np.exp(1-A)))
         dw = (1/m) * np.dot((A-Y), X)
-        db = (1/m) * (A - Y)
+        db = (1/m) * np.sum(A-Y)
         return cost, dw, db
 
     def optimize(self, X, Y, number_iterations, learning_rate):
@@ -39,10 +42,11 @@ class logistic:
                 print("Cost after iteration %i: %f" % (i, cost))
 
     def predit(self, X):
-        Y_pred = np.zeros(X.shape(0))
+        Y_pred = np.zeros(X.shape[0])
         A_list = self.infer(X)
-        for i in A_list:
-            if i > 0.5:
+        for i, v in enumerate(A_list):
+            if v > 0.5:
+                print(v)
                 Y_pred[i] = 1
         return Y_pred
 
