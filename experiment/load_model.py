@@ -5,7 +5,7 @@ import os
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer',
                'dog', 'frog', 'horse', 'ship', 'truck']
 save_dir = os.path.join(os.path.abspath('.'), 'saved_model')
-model_name = 'keras_cifar10_trained_model.h5'
+model_name = 'keras_cifar10_resnet_model.h5'
 img_dir = os.path.join(os.path.abspath('.'), 'img')
 img_path = os.path.join(img_dir, 'hybrid-car-ch.jpg')
 test_img = kr.preprocessing.image.load_img(img_path, target_size=(32, 32))
